@@ -146,11 +146,8 @@ class Request:
             self.initial_scheme = self.scheme
             self.initial_netloc = self.netloc
 
-        host = (self.netloc if (self.port == '80' or
-                                self.port == '443')
-                else self.netloc + ':' + self.port)
         # default header construction
-        asks_headers = c_i_dict([('Host', host),
+        asks_headers = c_i_dict([('Host', self.netloc),
                                  ('Connection', 'keep-alive'),
                                  ('Accept-Encoding', 'gzip, deflate'),
                                  ('Accept', '*/*'),
